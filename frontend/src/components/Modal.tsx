@@ -12,7 +12,7 @@ type State = {
 };
 
 export default class Modal extends Component<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {

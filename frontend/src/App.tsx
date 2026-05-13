@@ -4,7 +4,7 @@ import Posts from "./components/Posts";
 import type { PostType } from "./types/post";
 import "./styles/main.css";
 import Modal from "./components/Modal";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const baseURL: string = "/api";
 
@@ -63,7 +63,7 @@ export default class App extends Component<Props, State> {
     this.setState({ modalOpen: false });
   }
 
-  async addPost(name, description) {
+  async addPost(name: string, description: string) {
     try {
       const res = await axios.post(`${baseURL}/create-post`, {
         author: name,
@@ -83,7 +83,9 @@ export default class App extends Component<Props, State> {
         invalidPost: false,
       });
     } catch (error) {
-      const status = error?.response?.status;
+      const err = error as AxiosError;
+
+      const status = err?.response?.status;
 
       if (status === 400) {
         this.setState({ invalidPost: true });
