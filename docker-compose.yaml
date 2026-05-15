@@ -1,0 +1,23 @@
+services:
+  backend:
+    image: forum_backend
+    build:
+      context: ./backend
+    environment:
+      DATABASE_URL: "file:/app/data/dev.db"
+      PORT: 3000
+    volumes:
+      - db-data:/app/data
+  frontend:
+    image: forum_frontend
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    environment:
+      BACKEND_HOST: backend
+      BACKEND_PORT: 3000
+    depends_on:
+      - backend
+volumes:
+  db-data:

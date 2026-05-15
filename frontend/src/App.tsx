@@ -6,7 +6,7 @@ import "./styles/main.css";
 import Modal from "./components/Modal";
 import axios, { AxiosError } from "axios";
 
-const baseURL: string = "/api";
+const baseURL: string = `/api`;
 
 type State = {
   posts: PostType[];

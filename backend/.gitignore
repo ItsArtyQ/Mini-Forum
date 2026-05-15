@@ -4,5 +4,4 @@ dev.db
 .env
 dist
 
-generated/prisma
-prisma/migration
+/generated/prisma
